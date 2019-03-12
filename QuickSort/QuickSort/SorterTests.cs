@@ -83,7 +83,7 @@ namespace QuickSort
         public void BigRandomArray()
         {
             var rnd = new Random();
-            var array = new int[1500000000];
+            var array = new int[150000000];
             for (var i = 0; i < array.Length; i++)
                 array[i] = rnd.Next(-100, 100);
             Sorter.QuickSort(array);

@@ -16,11 +16,26 @@ namespace QuickSort
 
         static void Sort(int[] array, int start, int end)
         {
-            if(end > start)
+            var s = new Stack<Tuple<int, int>>();
+            s.Push(new Tuple<int, int>(start, end));
+            while(s.Count != 0)
             {
-                var p = Divide(array, start, end);
-                Sort(array, start, p - 1);
-                Sort(array, p + 1, end);
+                var t = s.Pop();
+                var l = t.Item1;
+                var r = t.Item2;
+                if (r <= l)
+                    continue;
+                int i = Divide(array, l, r);
+                if (i - l > r - i)
+                {
+                    s.Push(new Tuple<int, int>(l, i - 1));
+                    s.Push(new Tuple<int, int>(i + 1, r));
+                }
+                else
+                {
+                    s.Push(new Tuple<int, int>(i + 1, r));
+                    s.Push(new Tuple<int, int>(l, i - 1));
+                }
             }
         }
 
