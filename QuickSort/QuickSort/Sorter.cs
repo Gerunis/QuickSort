@@ -14,29 +14,50 @@ namespace QuickSort
             Sort(array, 0, array.Length - 1);
         }
 
-        static void Sort(int[] array, int start, int end)
+        static void Sort(int[] a, int l, int r)
         {
-            var s = new Stack<Tuple<int, int>>();
-            s.Push(new Tuple<int, int>(start, end));
-            while(s.Count != 0)
+            var v = a[r];
+            if (r <= l)
+                return;
+            int i = l;
+            int j = r - 1;
+            int p = l - 1;
+            int q = r;
+            while(i <= j)
             {
-                var t = s.Pop();
-                var l = t.Item1;
-                var r = t.Item2;
-                if (r <= l)
-                    continue;
-                int i = Divide(array, l, r);
-                if (i - l > r - i)
+                while (a[i] < v) i++ ;
+                while (a[j] > v) j-- ;
+                if (i >= j) break;
+                Swap(a, i, j);
+                if (a[i] == v)
                 {
-                    s.Push(new Tuple<int, int>(l, i - 1));
-                    s.Push(new Tuple<int, int>(i + 1, r));
+                    p++;
+                    Swap(a, p, i);
                 }
-                else
+                i++;
+                if (a[j] == v)
                 {
-                    s.Push(new Tuple<int, int>(i + 1, r));
-                    s.Push(new Tuple<int, int>(l, i - 1));
+                    q--;
+                    Swap(a, q, j);
                 }
+                j--;
             }
+            Swap(a, i, r);
+            j = i - 1;
+            i++;
+            for (var k = l; k <= p; k++, j--)
+                Swap(a, k, j);
+            for (var k = r - l; k >= q; k--, i++)
+                Swap(a, k, i);
+            Sort(a, l, j);
+            Sort(a, i, r);
+        }
+
+        static void Swap(int[] array, int i, int j)
+        {
+            var e = array[i];
+            array[i] = array[j];
+            array[j] = e;
         }
 
         static int Divide(int[] array, int start, int end)
