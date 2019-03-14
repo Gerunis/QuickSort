@@ -16,8 +16,6 @@ namespace QuickSort
                 Assert.True(array[i] <= array[i + 1]);
         }
 
-
-
         [Test]
         public void SortedArray()
         {
@@ -83,7 +81,7 @@ namespace QuickSort
         public void BigRandomArray()
         {
             var rnd = new Random();
-            var array = new int[6000000000];
+            var array = new int[300000000];
             for (var i = 0; i < array.Length; i++)
                 array[i] = rnd.Next(int.MinValue, int.MaxValue);
             Sorter.QuickSort(array);
