@@ -83,14 +83,13 @@ namespace QuickSort
         public void BigRandomArray()
         {
             var rnd = new Random();
-            var array = new int[150000000];
+            var array = new int[6000000000];
             for (var i = 0; i < array.Length; i++)
-                array[i] = rnd.Next(-100, 100);
+                array[i] = rnd.Next(int.MinValue, int.MaxValue);
             Sorter.QuickSort(array);
-            for (var i = 0; i < 1000; i++)
+            for (var i = 0; i < array.Length - 1; i++)
             {
-                var j = rnd.Next(0, array.Length - 1);
-                Assert.GreaterOrEqual(array[j + 1], array[j]);
+                Assert.GreaterOrEqual(array[i + 1], array[i]);
             }
         }
     }
