@@ -66,8 +66,9 @@ namespace QuickSort
             Sorter.QuickSort(array);
             for(var i = 0; i < 10; i++)
             {
-                var j = rnd.Next(0, array.Length - 1);
-                Assert.GreaterOrEqual(array[j + 1], array[j]);
+                var j = rnd.Next(0, array.Length - 2);
+                var k = rnd.Next(j, array.Length - 1);
+                Assert.GreaterOrEqual(array[k], array[j]);
             }
         }
 
