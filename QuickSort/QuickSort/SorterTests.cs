@@ -73,9 +73,15 @@ namespace QuickSort
         }
 
         [Test]
-        public void EmptyArray()
+        public void NullArray()
         {
             Sorter.QuickSort(null);
+        }
+        
+        [Test]
+        public void EmptyArray()
+        {
+            Sorter.QuickSort(new int[0]);
         }
 
         [Test]
