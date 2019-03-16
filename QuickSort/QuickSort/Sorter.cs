@@ -46,27 +46,5 @@ namespace QuickSort
             array[i] = array[j];
             array[j] = e;
         }
-
-        static int Divide(int[] array, int start, int end)
-        {
-            var pivot = array[(start + end) / 2];
-            var i = start;
-            var j = end;
-
-            while (true)
-            {
-                for (; array[i] < pivot; i++) ;
-                for (; array[j] > pivot; j--) ;
-
-                if (i >= j) return j;
-                if (array[i] == array[j]) i++;
-                else
-                {
-                    var e = array[i];
-                    array[i] = array[j];
-                    array[j] = e;
-                }
-            }
-        }
     }
 }
